@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+    <div class="jumbotron" th:replace="fragments/jumbotron :: jumbotron">
+        <div class="container">
+            <h1>Spring Framework Guru</h1>
+            <p class="lead">Online Courses for Spring Framework</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 text-center">
+                <h2>Thank you for your order!</h2>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div th:replace="fragments/footer :: footer">
+</body>
+</html>

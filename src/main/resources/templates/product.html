@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Product</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/style.css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
 
@@ -19,19 +20,46 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12" style="background-color: beige">
-            <h1>Spring Framework Guru - Course Name</h1>
+            <h1 th:text="${product.courseName}">Spring Framework Guru - Spring Introduction</h1>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <img src="//d6xfpzo6h49n1.cloudfront.net/BXwTFNXDD4SjVt6H78-It1YgNj8=/fit-in/705x0/https://d2vvqscadf4c1f.cloudfront.net/scgeIJ9wRGGNWvK0jAld_ThumbFREE_01.png"
-                    class="center-block">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="//d6xfpzo6h49n1.cloudfront.net/BXwTFNXDD4SjVt6H78-It1YgNj8=/fit-in/705x0/https://d2vvqscadf4c1f.cloudfront.net/scgeIJ9wRGGNWvK0jAld_ThumbFREE_01.png"
+                         th:src="@{/images/}+${product.imageUrl}"
+                         class="center-block" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row course-listing-extra-info">
+                        <div class="col-8">
+                            <img align="left" alt="John Thompson"
+                                 src="//d6xfpzo6h49n1.cloudfront.net/aIKHFbsYXBCe0wY0jwCIdITOB5k=/30x30/https://d2vvqscadf4c1f.cloudfront.net/uZC7XjnzTMyJJeq5hShi_IMG_2800square.jpg"
+                                 th:src="@{/images/}+${product.author.image}"
+                                 class="img-circle" />
+                            <div class="small course-author-name" th:text="${product.author.firstName} +' '+ ${product.author.lastName}">
+                                John Thompson
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="small course-price"
+                                 th:text="${product.price > 0 ? '$' + product.price : 'FREE'}">
+                                FREE
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
         <div class="col-md-6">
             <div>
-                <h2>Course Title</h2>
-                <p> Lorem ipsum dolor sit amet, consectetur adipiscing
+                <h2 th:text="${product.courseSubtitle}">Course Title</h2>
+                <p th:text="${product.courseDescription}"> Lorem ipsum dolor sit amet, consectetur adipiscing
                     elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Turpis nunc eget lorem
                     dolor sed viverra. Accumsan tortor posuere ac ut
@@ -55,14 +83,18 @@
 
     <div class="row">
         <div class="offset-md-6 col-md-4">
-            <button class="btn btn-primary">Buy now</button>
+            <button class="btn btn-primary" style="border-radius: 0px;">Buy now</button>
         </div>
     </div>
 </div>
+<br><br>
+<div class="container" th:replace="fragments/footer :: footer">footer</div>
 
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        th:src="@{/webjars/popper.js/1.14.1/umd/popper.min.js}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
 </body>
 </html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+<div class="jumbotron" th:replace="fragments/jumbotron :: jumbotron">
+    <div class="container">
+        <h1>Spring Framework Guru</h1>
+        <p class="lead">Online Courses for Spring Framework</p>
+    </div>
+</div>
+
+
+<div class="container">
+    <h2>Checkout Form</h2>
+<br>
+    <form th:object="${command}" th:action="@{/docheckout}" method="POST">
+
+        <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+            <p th:text="#{command.hasErrors}">Error Message</p>
+        </div>
+
+        <div class="form-group row"
+             >
+            <label for="firstName" class="col-md-2 col-form-label">
+                First Name
+            </label>
+            <div class="col-md-10">
+                <input type="text" th:field="*{firstName}"
+                       th:errorclass="is-invalid"
+                       id="firstName" class="form-control"
+                       placeholder="Enter First Name"/>
+                <div th:class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}">Error Message</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="lastName" class="col-md-2 col-form-label">
+                Last Name
+            </label>
+            <div class="col-md-10">
+                <input type="text" th:field="*{lastName}" th:errorclass="is-invalid" id="lastName" class="form-control" placeholder="Enter Last Name"/>
+                <div th:class="invalid-feedback" th:if="${#fields.hasErrors('lastName')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('lastName')}" th:text="${err}">Error Message</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="addressLine1" class="col-md-2 col-form-label">
+                Address Line 1
+            </label>
+            <div class="col-md-10">
+                <input type="text" th:field="*{addressLine1}" th:errorclass="is-invalid" id="addressLine1" class="form-control" placeholder="Enter Address"/>
+                <div th:class="invalid-feedback" th:if="${#fields.hasErrors('addressLine1')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('addressLine1')}" th:text="${err}">Error Message</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="addressLine2" class="col-md-2 col-form-label">
+                Address Line 1
+            </label>
+            <div class="col-md-10">
+                <input type="text" th:field="*{addressLine2}" th:errorclass="is-invalid" id="addressLine2" class="form-control" placeholder="Enter Address"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="city" class="col-md-2 col-form-label">
+                City
+            </label>
+            <div class="col-md-10">
+                <input type="text" th:field="*{city}" th:errorclass="is-invalid" id="city" class="form-control" placeholder="Enter City"/>
+                <div th:class="invalid-feedback" th:if="${#fields.hasErrors('city')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('city')}" th:text="${err}">Error Message</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="stateCode" class="col-md-2 col-form-label">
+                State Code
+            </label>
+            <div class="col-md-10">
+                <input type="text" th:field="*{stateCode}" th:errorclass="is-invalid" id="stateCode" class="form-control" placeholder="Enter State Code"/>
+                <div th:class="invalid-feedback" th:if="${#fields.hasErrors('stateCode')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('stateCode')}" th:text="${err}">Error Message</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="zipCode" class="col-md-2 col-form-label">
+                Zip Code
+            </label>
+            <div class="col-md-10">
+                <input type="text" th:field="*{zipCode}" th:errorclass="is-invalid" id="zipCode" class="form-control" placeholder="Enter Zip Code"/>
+                <div th:class="invalid-feedback" th:if="${#fields.hasErrors('zipCode')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('zipCode')}" th:text="${err}">Error Message</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <button class="btn btn-primary" type="submit">
+            Checkout
+        </button>
+    </form>
+</div>
+
+<br>
+<div th:replace="fragments/footer :: footer">
+
+</div>
+</body>
+</html>
